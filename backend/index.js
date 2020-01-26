@@ -6,9 +6,11 @@ const mongoClient = mongo.MongoClient
 const cors = require('cors')
 // MongoClass呼び出し
 const mongoClass = require('./classes/mongo.js')
-let mongoItem = new mongoClass(mongoClient);
-// DB接続テスト
-mongoItem.mongoConnect()
+const mongoItem = new mongoClass(mongoClient)
+// chokidar呼び出し
+const chokidar = require('chokidar')
+const chokidarClass = require('./classes/chokidar.js')
+let chokidarItem = new chokidarClass(chokidar, './test', mongoItem)
 
 const app = express()
 app.use(bodyParser.json())
