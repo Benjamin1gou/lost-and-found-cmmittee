@@ -24,29 +24,28 @@ module.exports = class MongoClass{
      * データを一つだけ登録する
      * @param object 登録するデータ
      */
-    insertOnea(object){
-        this.mongoClient.connect('mongodb://127.0.0.1:27017/test', (err, client) =>{
-            this.assert.equal(null, err)
+    insertOne(object){
+        this.mongoClient.connect('mongodb://127.0.0.1:27017/test', {
+            useUnifiedTopology: true,
+            useNewUrlParser: true,
+        })
+        .then(function(client){
 
             // mongoDBからcollectionの呼び出し
-            const db = client.db('log')
+            // const db = client.db('log')
             // let collection = db.collection('log')
-            
-            console.log(db)
             // データ登録
-            console.log(object)
-            db.collection("test",(error, collection) => {
+            const db = client.db('test')
+            db.collection("log",(error, collection) => {
                 collection.insertMany([
                     object
                 ],(error,result) => {
-                    collection.find().toArray((error, documents) => {
-                        for (var document of documents) {
-                            console.log(document.name);
-                        }
-                    });
-                    client.close();  //db.close()から変更
+                    client.close()  //db.close()から変更
                 });
             });
+        })
+        .catch(err => {
+            console.log(Error, err.message)
         })
     }
     

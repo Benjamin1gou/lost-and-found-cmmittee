@@ -34,7 +34,7 @@ module.exports = class ChokidarCLass {
             item.mode = 'fileAdd'
 
             // 履歴登録
-            mongo.insertOnea(item)
+            mongo.insertOne(item)
         })
         
         // フォルダ追加処理
