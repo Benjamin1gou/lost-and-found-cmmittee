@@ -31,9 +31,6 @@ module.exports = class MongoClass{
         })
         .then(function(client){
 
-            // mongoDBからcollectionの呼び出し
-            // const db = client.db('log')
-            // let collection = db.collection('log')
             // データ登録
             const db = client.db('test')
             db.collection("log",(error, collection) => {
