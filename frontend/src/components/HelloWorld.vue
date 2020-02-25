@@ -22,7 +22,7 @@ export default {
     async post() {
       let element = { text: this.text }
       let response = await Methods.testPosting(element)
-      console.log(response.data.message)
+      
     }
   }
 }
